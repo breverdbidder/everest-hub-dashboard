@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+
+const routes = [
+  { path: '/ssot', name: 'SSOT Viewer', desc: 'Architecture + Gate specs rendered from everest-vault/decisions/', href: '/everest-hub-dashboard/ssot' },
+  { path: '/gate', name: 'Enterprise Gate', desc: 'EG14 + ZoneWise 38-criterion enterprise gate live status', href: '/everest-hub-dashboard/gate' },
+  { path: '/ops', name: 'Live Ops', desc: 'Agent ops status, wires live Day 5+ of sprint', href: '/everest-hub-dashboard/ops' },
+  { path: '/deferrals', name: 'Deferrals', desc: 'Pulled from everest-content/content/deferrals/ markdown', href: '/everest-hub-dashboard/deferrals' },
+];
+
+const dayOneStatus = [
+  { label: 'Day 0 · repo + scaffold', state: 'done', note: 'via SUMMIT #513 strict-protocol' },
+  { label: 'Day 0 · Astro+Tailwind rebuild', state: 'done', note: 'via DIRECT GH PUSH Apr16 23:07 EST' },
+  { label: 'Day 0 · inventory 3/6 lanes', state: 'done', note: '#517 · D0-3, D0-5, D0-6' },
+  { label: 'Day 0 · 3 inventory lanes', state: 'pending', note: 'Ariel: LinkedIn, AWS, Hetzner SSH' },
+  { label: 'Day 1 · tenant schema', state: 'skip', note: 'already done — everest_tenants exists 8 rows' },
+  { label: 'Day 1 · AWS SES domain auth', state: 'blocked', note: 'blocked by D0-2 AWS lane + DMARC add' },
+];
+---
+<Base title="Hub v0.1 — Day 0">
+  <header class="p-8 bg-gradient-to-br from-everest-navy to-everest-navy-deep border border-everest-orange/25 rounded-[14px] mb-8 flex justify-between items-start">
+    <div>
+      <div class="eyebrow mb-2">◢ EVEREST MARKETING HUB</div>
+      <h1 class="text-4xl font-extrabold tracking-tight text-white leading-tight mb-1">Hub v0.1 — Day 0</h1>
+      <p class="text-sm text-everest-text-dim">Operational dashboard + SSOT viewer for the Agent Chain + Marketing OS</p>
+    </div>
+    <div class="inline-flex items-center gap-2 px-3.5 py-2 bg-black/60 border border-everest-green/30 rounded-lg font-mono text-[11px]">
+      <span class="w-2 h-2 bg-everest-green rounded-full shadow-[0_0_10px_#10B981]"></span>
+      DAY 0 · ASTRO LIVE
+    </div>
+  </header>
+
+  <section class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4 mb-8">
+    {routes.map(r => (
+      <a href={r.href} class="card block transition-all duration-150 hover:bg-everest-bg-hover hover:border-everest-orange hover:-translate-y-0.5 no-underline">
+        <div class="font-mono text-xs text-everest-orange mb-2">{r.path}</div>
+        <div class="text-base font-semibold text-white mb-1.5">{r.name}</div>
+        <div class="text-[13px] text-everest-text-dim leading-relaxed">{r.desc}</div>
+      </a>
+    ))}
+  </section>
+
+  <section class="card">
+    <h3 class="font-mono text-sm text-everest-orange tracking-[0.1em] mb-3">SPRINT: APR 17 – 26 · HUB v0.1</h3>
+    <ul class="space-y-2">
+      {dayOneStatus.map(s => (
+        <li class="flex items-start gap-3 text-[13px]">
+          <span class={`
+            mt-1 w-2 h-2 rounded-full flex-shrink-0
+            ${s.state === 'done' ? 'bg-everest-green' : ''}
+            ${s.state === 'pending' ? 'bg-everest-amber' : ''}
+            ${s.state === 'blocked' ? 'bg-everest-red' : ''}
+            ${s.state === 'skip' ? 'bg-everest-text-muted' : ''}
+          `}></span>
+          <div>
+            <span class="text-white font-medium">{s.label}</span>
+            <span class="text-everest-text-dim"> — {s.note}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-4 text-[11px] font-mono text-everest-text-muted">GTM unlock target: May 4 · Patent provisional may push · PAIRING RULE locked</p>
+  </section>
+</Base>
