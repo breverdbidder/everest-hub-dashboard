@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+
+const eg14Items = [
+  { n: 1, name: 'Tests present & passing', status: 'partial', note: 'CI added Apr 16, coverage TBD' },
+  { n: 2, name: 'CI/CD pipeline', status: 'done', note: 'Astro build + Pages deploy via GH Actions' },
+  { n: 3, name: 'Monitoring & alerts', status: 'missing', note: 'No Sentry/Grafana configured yet' },
+  { n: 4, name: 'Documentation complete', status: 'partial', note: 'README + this dashboard, missing runbook' },
+  { n: 5, name: 'Secrets management', status: 'done', note: 'Supabase vault for GH PAT, zero plaintext' },
+  { n: 6, name: 'Error handling & retries', status: 'partial', note: 'Dispatcher has 3-retry, app has no formal' },
+  { n: 7, name: 'Logging standard', status: 'partial', note: 'Console only, no centralized aggregator' },
+  { n: 8, name: 'Performance SLOs', status: 'missing', note: 'No SLOs defined — needs Ariel product call' },
+  { n: 9, name: 'Runbook & DR', status: 'missing', note: 'No disaster recovery plan' },
+  { n: 10, name: 'Security audit', status: 'missing', note: 'No formal review performed' },
+  { n: 11, name: 'Rollback procedure', status: 'done', note: 'GH revert + Pages previous build' },
+  { n: 12, name: 'Load test baseline', status: 'missing', note: 'Static site at <100 req/s — N/A until dynamic' },
+  { n: 13, name: 'Accessibility WCAG AA', status: 'partial', note: 'Contrast OK, keyboard nav needs audit' },
+  { n: 14, name: 'Production-ready infra', status: 'partial', note: 'GitHub Pages (free) — limits 100k req/hr' },
+];
+
+const passed = eg14Items.filter(i => i.status === 'done').length;
+const partial = eg14Items.filter(i => i.status === 'partial').length;
+const missing = eg14Items.filter(i => i.status === 'missing').length;
+const score = passed * 100 / 14;
+---
+<Base title="Enterprise Gate">
+  <div class="eyebrow mb-2">◢ /gate</div>
+  <h1 class="text-3xl font-extrabold text-white mb-2">Enterprise Gate — EG14</h1>
+  <p class="text-everest-text-dim mb-6 max-w-2xl">14-point canonical prod gate. Passing = all 14 marked done. Hub v0.1 current state below — honest scorecard, not aspirational.</p>
+
+  <div class="grid grid-cols-3 gap-4 mb-8">
+    <div class="card text-center">
+      <div class="text-3xl font-extrabold text-everest-green">{passed}</div>
+      <div class="text-xs font-mono text-everest-text-dim mt-1">DONE</div>
+    </div>
+    <div class="card text-center">
+      <div class="text-3xl font-extrabold text-everest-amber">{partial}</div>
+      <div class="text-xs font-mono text-everest-text-dim mt-1">PARTIAL</div>
+    </div>
+    <div class="card text-center">
+      <div class="text-3xl font-extrabold text-everest-red">{missing}</div>
+      <div class="text-xs font-mono text-everest-text-dim mt-1">MISSING</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="font-mono text-xs text-everest-orange tracking-[0.1em] mb-4">EG14 CRITERIA · HUB v0.1</h3>
+    <div class="space-y-3">
+      {eg14Items.map(i => (
+        <div class="flex items-start gap-3 text-[13px] py-1.5 border-b border-everest-border/40 last:border-0">
+          <span class="font-mono text-xs text-everest-text-muted w-8">{String(i.n).padStart(2, '0')}</span>
+          <span class={`
+            mt-1 w-2 h-2 rounded-full flex-shrink-0
+            ${i.status === 'done' ? 'bg-everest-green' : ''}
+            ${i.status === 'partial' ? 'bg-everest-amber' : ''}
+            ${i.status === 'missing' ? 'bg-everest-red' : ''}
+          `}></span>
+          <div class="flex-1">
+            <span class="text-white font-medium">{i.name}</span>
+            <div class="text-everest-text-dim text-[12px] mt-0.5">{i.note}</div>
+          </div>
+          <span class={`
+            text-[10px] font-mono uppercase px-2 py-0.5 rounded border
+            ${i.status === 'done' ? 'text-everest-green border-everest-green/30' : ''}
+            ${i.status === 'partial' ? 'text-everest-amber border-everest-amber/30' : ''}
+            ${i.status === 'missing' ? 'text-everest-red border-everest-red/30' : ''}
+          `}>{i.status}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <p class="mt-6 text-[12px] font-mono text-everest-text-muted">Score: {score.toFixed(1)}% fully-done. True EG14 pass = 14/14 done. Tonight took Hub v0.1 from 0/14 to {passed}/14. Zero cheerleading, zero "close to enterprise-grade" lies.</p>
+</Base>
