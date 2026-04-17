@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+
+const deferred = [
+  { slug: 'apr16-v2-dispatcher-debug', date: 'Apr 16 2026', owner: 'architect+ariel', status: 'open', desc: 'Max OAuth refresh on Hetzner → Sonnet 4.6 cascade restart' },
+  { slug: 'hub-day0-astro-rebuild', date: 'Apr 16 2026', owner: 'architect', status: 'closed-tonight', desc: 'Astro+Tailwind migration of hub dashboard — shipped Apr 16 23:15' },
+  { slug: 'hub-day0-remaining-lanes', date: 'Apr 17 2026', owner: 'ariel', status: 'pending-am', desc: 'D0-1 LinkedIn, D0-2 AWS console, D0-4 Hetzner SSH' },
+  { slug: 'kortix-everest-delete', date: 'Apr 17 2026', owner: 'ariel', status: 'pending', desc: 'Full delete via web UI Danger Zone (PAT lacks delete_repo)' },
+  { slug: 'crewai-everest-bootstrap', date: 'Apr 16 2026', owner: 'architect', status: 'closed-tonight', desc: 'Tenants config + first Crew definition shipped Apr 16 23:20' },
+  { slug: 'sentinel-license-poison-rule', date: 'Apr 17+', owner: 'architect', status: 'backlog', desc: 'Auto-halt forks matching Elastic|BUSL|SSPL before they happen again' },
+];
+---
+<Base title="Deferrals">
+  <div class="eyebrow mb-2">◢ /deferrals</div>
+  <h1 class="text-3xl font-extrabold text-white mb-2">Deferrals</h1>
+  <p class="text-everest-text-dim mb-8 max-w-2xl">Open work carried between sessions. Source: <code class="font-mono text-everest-orange text-sm">breverdbidder/everest-content/content/deferrals/</code></p>
+
+  <div class="grid gap-3">
+    {deferred.map(d => (
+      <div class="card">
+        <div class="flex items-start justify-between gap-4 flex-wrap">
+          <div class="flex-1 min-w-0">
+            <div class="font-mono text-xs text-everest-orange mb-1 truncate">deferrals/{d.slug}.md</div>
+            <div class="text-white font-medium text-[14px] mb-1">{d.desc}</div>
+            <div class="flex gap-3 text-[11px] font-mono text-everest-text-muted">
+              <span>owner: <span class="text-everest-text">{d.owner}</span></span>
+              <span>{d.date}</span>
+            </div>
+          </div>
+          <span class={`
+            text-[10px] font-mono uppercase px-2 py-1 rounded border whitespace-nowrap
+            ${d.status === 'open' || d.status === 'pending' || d.status === 'pending-am' ? 'text-everest-amber border-everest-amber/30' : ''}
+            ${d.status.startsWith('closed') ? 'text-everest-green border-everest-green/30' : ''}
+            ${d.status === 'backlog' ? 'text-everest-text-muted border-everest-text-muted/30' : ''}
+          `}>{d.status}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</Base>
