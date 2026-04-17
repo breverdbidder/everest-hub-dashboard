@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply bg-everest-bg text-everest-text font-sans antialiased min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  body {
+    @apply bg-everest-radial;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-[10px] font-medium tracking-[0.15em] uppercase text-everest-orange;
+  }
+  .card {
+    @apply bg-everest-bg-card border border-everest-border rounded-[10px] p-6;
+  }
+  .btn-primary {
+    @apply bg-everest-orange text-everest-bg px-[18px] py-[10px] rounded-md font-semibold transition-opacity hover:opacity-90;
+  }
+}
