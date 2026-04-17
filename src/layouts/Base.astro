@@ -1,0 +1,40 @@
+---
+export interface Props {
+  title: string;
+  eyebrow?: string;
+}
+const { title, eyebrow = '◢ EVEREST MARKETING HUB' } = Astro.props;
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Everest Marketing Hub — operational dashboard for Agent Chain + Marketing OS" />
+    <title>{title} · Everest Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="max-w-[1200px] mx-auto px-6 py-10">
+      <nav class="mb-6 flex items-center gap-4 text-xs font-mono text-everest-text-muted">
+        <a href="/everest-hub-dashboard/" class="hover:text-everest-orange">HOME</a>
+        <span>·</span>
+        <a href="/everest-hub-dashboard/ssot" class="hover:text-everest-orange">SSOT</a>
+        <a href="/everest-hub-dashboard/gate" class="hover:text-everest-orange">GATE</a>
+        <a href="/everest-hub-dashboard/ops" class="hover:text-everest-orange">OPS</a>
+        <a href="/everest-hub-dashboard/deferrals" class="hover:text-everest-orange">DEFERRALS</a>
+      </nav>
+      <slot />
+      <footer class="mt-16 pt-6 border-t border-everest-border font-mono text-[11px] text-everest-text-muted text-center">
+        EVEREST CAPITAL USA · SATELLITE BEACH FL · AGENT-NATIVE CLI INTELLIGENCE<br />
+        PATENT V3.1 (12 CLAIMS PAT-PEND) · BRANDGUARD CANONICAL
+      </footer>
+    </div>
+  </body>
+</html>
