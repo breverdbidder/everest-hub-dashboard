@@ -1,0 +1,102 @@
+/* Everest BrandGuard — Canonical Design Tokens
+   SSOT: breverdbidder/zonewise-web/app/globals.css + BRAND_COLORS.md
+   Apr 16 2026 — MANDATORY for all Everest ecosystem UIs
+*/
+
+:root {
+  /* Core brand colors */
+  --everest-navy: #1E3A5F;
+  --everest-navy-deep: #162B47;
+  --everest-orange: #F59E0B;
+  --everest-orange-bright: #FBBF24;
+  --everest-bg: #020617;          /* slate-950 — canonical background */
+  --everest-bg-card: #0B1220;
+  --everest-bg-soft: #0F172A;
+  --everest-bg-hover: #131E34;
+
+  /* Borders */
+  --everest-border: #1E293B;
+  --everest-border-soft: #1A2438;
+
+  /* Text */
+  --everest-text: #E2E8F0;         /* slate-200 */
+  --everest-text-dim: #94A3B8;     /* slate-400 */
+  --everest-text-muted: #64748B;   /* slate-500 */
+
+  /* Status */
+  --everest-green: #10B981;
+  --everest-red: #EF4444;
+  --everest-amber: #F59E0B;
+  --everest-blue: #3B82F6;
+  --everest-purple: #8B5CF6;
+
+  /* Typography */
+  --everest-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --everest-font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing (4px grid) */
+  --everest-space-1: 4px;
+  --everest-space-2: 8px;
+  --everest-space-3: 12px;
+  --everest-space-4: 16px;
+  --everest-space-6: 24px;
+  --everest-space-8: 32px;
+
+  /* Radius */
+  --everest-radius-sm: 6px;
+  --everest-radius: 10px;
+  --everest-radius-lg: 14px;
+}
+
+/* Base styles */
+html, body {
+  background: var(--everest-bg);
+  color: var(--everest-text);
+  font-family: var(--everest-font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  background: radial-gradient(ellipse 80% 50% at 20% 0%, rgba(30,58,95,.25), transparent 60%),
+              radial-gradient(ellipse 60% 40% at 80% 100%, rgba(245,158,11,.06), transparent 60%),
+              var(--everest-bg);
+}
+
+/* Common utility classes */
+.brand-navy { color: var(--everest-navy); }
+.brand-orange { color: var(--everest-orange); }
+.bg-brand-navy { background: var(--everest-navy); }
+.bg-brand-orange { background: var(--everest-orange); }
+.font-mono { font-family: var(--everest-font-mono); }
+
+.eyebrow {
+  font-family: var(--everest-font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--everest-orange);
+}
+
+.card {
+  background: var(--everest-bg-card);
+  border: 1px solid var(--everest-border);
+  border-radius: var(--everest-radius);
+  padding: var(--everest-space-6);
+}
+
+.btn-primary {
+  background: var(--everest-orange);
+  color: var(--everest-bg);
+  padding: 10px 18px;
+  border-radius: var(--everest-radius-sm);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.btn-primary:hover { opacity: .9; }
