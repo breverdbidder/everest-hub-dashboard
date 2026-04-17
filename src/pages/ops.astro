@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Live Ops">
+  <div class="eyebrow mb-2">◢ /ops</div>
+  <h1 class="text-3xl font-extrabold text-white mb-2">Live Ops</h1>
+  <p class="text-everest-text-dim mb-8 max-w-2xl">Agent ops status. Wires live Day 5+ of the Apr 17–26 sprint. Currently placeholder — real data needs Supabase client + Cloudflare Access.</p>
+
+  <div class="card mb-4">
+    <div class="font-mono text-xs text-everest-orange mb-2">tonight_status</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-[13px]">
+      <div>
+        <div class="text-everest-text-muted text-[11px] font-mono">Strict dispatches</div>
+        <div class="text-white text-xl font-bold">3/3</div>
+        <div class="text-everest-green text-[11px]">100% via marker check</div>
+      </div>
+      <div>
+        <div class="text-everest-text-muted text-[11px] font-mono">Direct GH pushes</div>
+        <div class="text-white text-xl font-bold">15+</div>
+        <div class="text-everest-green text-[11px]">vault→API pattern</div>
+      </div>
+      <div>
+        <div class="text-everest-text-muted text-[11px] font-mono">Live Pages</div>
+        <div class="text-white text-xl font-bold">2</div>
+        <div class="text-everest-green text-[11px]">everest-status, hub-dashboard</div>
+      </div>
+      <div>
+        <div class="text-everest-text-muted text-[11px] font-mono">License rejects</div>
+        <div class="text-white text-xl font-bold">1</div>
+        <div class="text-everest-red text-[11px]">suna Elastic L2.0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="font-mono text-xs text-everest-orange mb-3">wires_pending</div>
+    <ul class="space-y-2 text-[13px] text-everest-text-dim">
+      <li>→ Supabase JS client with RLS for `everest_dispatch_ops` view</li>
+      <li>→ Live Summit state table (queued/running/failed/verified counts)</li>
+      <li>→ Hetzner dispatcher health poll (requires SSH tunnel or exposed API)</li>
+      <li>→ Cloudflare Access gate → only Ariel + @everestcapitalusa.com</li>
+      <li>→ Telegram webhook for Day-0 checkpoint (needs bot token in vault)</li>
+    </ul>
+  </div>
+</Base>
